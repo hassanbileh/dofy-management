@@ -1,4 +1,3 @@
-
 import 'package:dofymanager/constants/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +5,8 @@ typedef OnSubmitted = void Function(String)?;
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
+  final Color? fillColor;
+  final Color? borderColor;
   final IconData? icon;
   final bool? isP;
   final TextInputType? kbType;
@@ -30,6 +31,8 @@ class CustomTextField extends StatelessWidget {
     this.suffixIcon,
     this.prefixIcon,
     this.iconColor,
+    this.fillColor,
+    this.borderColor,
   });
   @override
   Widget build(BuildContext context) {
@@ -38,10 +41,10 @@ class CustomTextField extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: TextField(
           controller: controller,
-          enableSuggestions: (kbType != TextInputType.emailAddress ||
-                  isP != null)
-              ? false
-              : true,
+          enableSuggestions:
+              (kbType != TextInputType.emailAddress || isP != null)
+                  ? false
+                  : true,
           autocorrect: false,
           obscureText: isP != null ? true : false,
           onSubmitted: submit,
@@ -49,9 +52,9 @@ class CustomTextField extends StatelessWidget {
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              borderSide: const BorderSide(color: Colors.white),
+              borderSide: BorderSide(color: borderColor ?? Colors.white),
             ),
-            fillColor: Colors.grey.shade100,
+            fillColor: fillColor ?? Colors.grey.shade100,
             filled: true,
             icon: (prefixIcon != null)
                 ? null
@@ -63,7 +66,7 @@ class CustomTextField extends StatelessWidget {
             labelText: labelText,
             prefixIcon: Icon(
               prefixIcon,
-              color: (iconColor != null ) ? iconColor : AppTheme.iconColor,
+              color: iconColor ?? AppTheme.iconColor,
             ),
             suffixIcon: (isP != null && isP != false) ? suffixIcon : null,
           ),

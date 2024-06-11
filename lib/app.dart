@@ -1,3 +1,4 @@
+import 'package:dofymanager/constants/routes.dart';
 import 'package:dofymanager/screens/screens.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
+      routes: {
+        mainAdmin: (context) => const MainAdmin(),
+      },
       home: const MainScreen(),
     );
   }
